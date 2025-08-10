@@ -21,7 +21,7 @@ export default function HomePage() {
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: "url('/placeholder-p5now.png')"
+            backgroundImage: "url('Portfolio_Pictures/Aesthetics/IMG_9891-2-2.jpg')"
           }}
         />
       </div>
@@ -33,7 +33,7 @@ export default function HomePage() {
             Abdul Rehman
           </h1>
           <div className="text-xl md:text-2xl lg:text-3xl text-amber-400 mb-8 font-light tracking-wide">
-            Video Editor | Videographer | Creative Storyteller
+            Creative Storyteller | Video Editor | Videographer 
           </div>
           <p className="text-lg md:text-xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed">
             Impactful storytelling through high-end post-production and narrative-driven visual content
