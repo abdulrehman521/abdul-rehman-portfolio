@@ -75,7 +75,7 @@ export default function AddFilmsPage() {
       if (error) throw error
       setFilms(data || [])
     } catch (error) {
-      console.error("Error loading films:", error)
+      console.error("Error loading Films:", error)
       toast({
         title: "Error",
         description: "Failed to load films",
