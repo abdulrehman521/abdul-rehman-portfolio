@@ -29,7 +29,7 @@ export default function AboutPage() {
             <div className="relative">
               <div className="aspect-square rounded-2xl overflow-hidden bg-gradient-to-br from-amber-400/20 to-transparent p-1">
                 <Image
-                  src="/cinematic-portrait-photographer.png"
+                  src="/ProfilePic.jpg"
                   alt="Abdul Rehman"
                   width={600}
                   height={600}
@@ -59,11 +59,19 @@ export default function AboutPage() {
               </p>
 
               <div className="pt-4">
-                <Button className="bg-amber-500 hover:bg-amber-600 text-black font-semibold">
-                  <Download className="mr-2 h-4 w-4" />
-                  Download CV
-                </Button>
-              </div>
+                  <a
+                    href="/Abdul-Rehman-CV.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    download
+                  >
+                    <Button className="bg-amber-500 hover:bg-amber-600 text-black font-semibold">
+                      <Download className="mr-2 h-4 w-4" />
+                      Download CV
+                    </Button>
+                  </a>
+                </div>
+
             </div>
           </div>
         </div>

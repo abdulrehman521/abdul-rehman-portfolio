@@ -173,7 +173,7 @@ import fs from "fs";
 import path from "path";
 import PhotographyClient from "./PhotographyClient";
 
-const categories = ["Aesthetics", "Corporate", "Fashion", "Product", "Sports", "wedding"];
+const categories = ["Aesthetics", "Corporate", "Fashion", "Product", "Sports", "Wedding"];
 
 // Recursive function to get all images from a folder
 function getImagesFromFolder(folderPath: string, folderURL: string): string[] {
