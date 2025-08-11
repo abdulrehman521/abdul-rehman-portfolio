@@ -134,115 +134,219 @@ export default function AddFilmsPage() {
     }
   }
 
+  // const handleSubmit = async (e: React.FormEvent) => {
+  //   e.preventDefault()
+  //   setIsLoading(true)
+
+  //   try {
+  //     // Validate YouTube URLs
+  //     if (!validateYouTubeUrl(formData.trailerUrl)) {
+  //       toast({
+  //         title: "Invalid URL",
+  //         description: "Trailer URL must be in format: https://youtu.be/VIDEO_ID",
+  //         variant: "destructive",
+  //       })
+  //       setIsLoading(false)
+  //       return
+  //     }
+
+  //     if (!validateYouTubeUrl(formData.filmUrl)) {
+  //       toast({
+  //         title: "Invalid URL",
+  //         description: "Film URL must be in format: https://youtu.be/VIDEO_ID",
+  //         variant: "destructive",
+  //       })
+  //       setIsLoading(false)
+  //       return
+  //     }
+
+  //     // Convert URLs to embed format
+  //     const embedTrailerUrl = convertToEmbedUrl(formData.trailerUrl)
+  //     const embedFilmUrl = convertToEmbedUrl(formData.filmUrl)
+
+  //     // Check for duplicate film URL (excluding current film if editing)
+  //     const { data: existingFilms } = await supabase.from("films").select("id").eq("film_url", embedFilmUrl)
+
+  //     if (existingFilms && existingFilms.length > 0) {
+  //       const isDuplicate = editingFilm
+  //         ? existingFilms.some((film) => film.id !== editingFilm.id)
+  //         : existingFilms.length > 0
+
+  //       if (isDuplicate) {
+  //         toast({
+  //           title: "Error",
+  //           description: "A film with this URL already exists",
+  //           variant: "destructive",
+  //         })
+  //         setIsLoading(false)
+  //         return
+  //       }
+  //     }
+
+  //     let posterUrl = editingFilm?.poster || ""
+
+  //     if (posterFile) {
+  //       toast({
+  //         title: "Uploading Image",
+  //         description: "Uploading poster to Cloudinary...",
+  //       })
+  //       posterUrl = await uploadToCloudinary(posterFile)
+  //       toast({
+  //         title: "Success",
+  //         description: "Image uploaded successfully!",
+  //       })
+  //     }
+
+  //     const filmData = {
+  //       title: formData.title,
+  //       year: formData.year,
+  //       duration: formData.duration,
+  //       genre: formData.genre,
+  //       role: formData.role,
+  //       description: formData.description,
+  //       poster: posterUrl,
+  //       awards: formData.awards
+  //         .split(",")
+  //         .map((award) => award.trim())
+  //         .filter(Boolean),
+  //       status: formData.status,
+  //       trailer_url: embedTrailerUrl,
+  //       film_url: embedFilmUrl,
+  //     }
+
+  //     if (editingFilm) {
+  //       const { error } = await supabase.from("films").update(filmData).eq("id", editingFilm.id)
+  //       if (error) throw error
+  //       toast({
+  //         title: "Success",
+  //         description: "Film updated successfully!",
+  //       })
+  //     } else {
+  //       const { error } = await supabase.from("films").insert([filmData])
+  //       if (error) throw error
+  //       toast({
+  //         title: "Success",
+  //         description: "Film added successfully!",
+  //       })
+  //     }
+
+  //     resetForm()
+  //     loadFilms()
+  //   } catch (error) {
+  //     console.error("Submit error:", error)
+  //     toast({
+  //       title: "Error",
+  //       description: "Error: " + (error as Error).message,
+  //       variant: "destructive",
+  //     })
+  //   } finally {
+  //     setIsLoading(false)
+  //   }
+  // }
+
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsLoading(true)
+  e.preventDefault();
+  setIsLoading(true);
 
-    try {
-      // Validate YouTube URLs
-      if (!validateYouTubeUrl(formData.trailerUrl)) {
-        toast({
-          title: "Invalid URL",
-          description: "Trailer URL must be in format: https://youtu.be/VIDEO_ID",
-          variant: "destructive",
-        })
-        setIsLoading(false)
-        return
-      }
-
-      if (!validateYouTubeUrl(formData.filmUrl)) {
-        toast({
-          title: "Invalid URL",
-          description: "Film URL must be in format: https://youtu.be/VIDEO_ID",
-          variant: "destructive",
-        })
-        setIsLoading(false)
-        return
-      }
-
-      // Convert URLs to embed format
-      const embedTrailerUrl = convertToEmbedUrl(formData.trailerUrl)
-      const embedFilmUrl = convertToEmbedUrl(formData.filmUrl)
-
-      // Check for duplicate film URL (excluding current film if editing)
-      const { data: existingFilms } = await supabase.from("films").select("id").eq("film_url", embedFilmUrl)
-
-      if (existingFilms && existingFilms.length > 0) {
-        const isDuplicate = editingFilm
-          ? existingFilms.some((film) => film.id !== editingFilm.id)
-          : existingFilms.length > 0
-
-        if (isDuplicate) {
-          toast({
-            title: "Error",
-            description: "A film with this URL already exists",
-            variant: "destructive",
-          })
-          setIsLoading(false)
-          return
-        }
-      }
-
-      let posterUrl = editingFilm?.poster || ""
-
-      if (posterFile) {
-        toast({
-          title: "Uploading Image",
-          description: "Uploading poster to Cloudinary...",
-        })
-        posterUrl = await uploadToCloudinary(posterFile)
-        toast({
-          title: "Success",
-          description: "Image uploaded successfully!",
-        })
-      }
-
-      const filmData = {
-        title: formData.title,
-        year: formData.year,
-        duration: formData.duration,
-        genre: formData.genre,
-        role: formData.role,
-        description: formData.description,
-        poster: posterUrl,
-        awards: formData.awards
-          .split(",")
-          .map((award) => award.trim())
-          .filter(Boolean),
-        status: formData.status,
-        trailer_url: embedTrailerUrl,
-        film_url: embedFilmUrl,
-      }
-
-      if (editingFilm) {
-        const { error } = await supabase.from("films").update(filmData).eq("id", editingFilm.id)
-        if (error) throw error
-        toast({
-          title: "Success",
-          description: "Film updated successfully!",
-        })
-      } else {
-        const { error } = await supabase.from("films").insert([filmData])
-        if (error) throw error
-        toast({
-          title: "Success",
-          description: "Film added successfully!",
-        })
-      }
-
-      resetForm()
-      loadFilms()
-    } catch (error) {
-      console.error("Submit error:", error)
+  try {
+    // Validate YouTube URLs
+    if (!validateYouTubeUrl(formData.trailerUrl)) {
       toast({
-        title: "Error",
-        description: "Error: " + (error as Error).message,
+        title: "Invalid URL",
+        description: "Trailer URL must be in format: https://youtu.be/VIDEO_ID",
         variant: "destructive",
-      })
-    } finally {
-      setIsLoading(false)
+      });
+      setIsLoading(false);
+      return;
     }
+
+    if (!validateYouTubeUrl(formData.filmUrl)) {
+      toast({
+        title: "Invalid URL",
+        description: "Film URL must be in format: https://youtu.be/VIDEO_ID",
+        variant: "destructive",
+      });
+      setIsLoading(false);
+      return;
+    }
+
+    // Convert URLs to embed format
+    const embedTrailerUrl = convertToEmbedUrl(formData.trailerUrl);
+    const embedFilmUrl = convertToEmbedUrl(formData.filmUrl);
+
+    // Duplicate check (skip if editing same film_url)
+    const { data: existingFilms } = await supabase.from("films").select("id").eq("film_url", embedFilmUrl);
+    if (existingFilms && existingFilms.length > 0) {
+      const isDuplicate = editingFilm
+        ? existingFilms.some((film) => film.id !== editingFilm.id)
+        : existingFilms.length > 0;
+      if (isDuplicate) {
+        toast({
+          title: "Error",
+          description: "A film with this URL already exists",
+          variant: "destructive",
+        });
+        setIsLoading(false);
+        return;
+      }
+    }
+
+    // Handle poster
+    let posterUrl = editingFilm?.poster || "";
+    if (posterFile) {
+      toast({ title: "Uploading Image", description: "Uploading poster to Cloudinary..." });
+      posterUrl = await uploadToCloudinary(posterFile);
+      toast({ title: "Success", description: "Image uploaded successfully!" });
+    }
+
+    const filmData = {
+      title: formData.title,
+      year: formData.year,
+      duration: formData.duration,
+      genre: formData.genre,
+      role: formData.role,
+      description: formData.description,
+      poster: posterUrl,
+      awards: formData.awards
+        .split(",")
+        .map((award) => award.trim())
+        .filter(Boolean),
+      status: formData.status,
+      trailer_url: embedTrailerUrl,
+      film_url: embedFilmUrl,
+    };
+
+    if (editingFilm) {
+      // Delete the old entry
+      const { error: deleteError } = await supabase.from("films").delete().eq("id", editingFilm.id);
+      if (deleteError) throw deleteError;
+
+      // Insert the new edited entry (will be at top because of new created_at)
+      const { error: insertError } = await supabase.from("films").insert([filmData]);
+      if (insertError) throw insertError;
+
+      toast({ title: "Success", description: "Film updated and moved to top!" });
+    } else {
+      const { error: insertError } = await supabase.from("films").insert([filmData]);
+      if (insertError) throw insertError;
+
+      toast({ title: "Success", description: "Film added successfully!" });
+    }
+
+    resetForm();
+    await loadFilms();
+  } catch (error) {
+    console.error("Submit error:", error);
+    toast({
+      title: "Error",
+      description: "Error: " + (error as Error).message,
+      variant: "destructive",
+    });
+  } finally {
+    setIsLoading(false);
   }
+};
+
 
   const handleDelete = async (id: number) => {
     if (!confirm("Are you sure you want to delete this film?")) return
