@@ -184,10 +184,14 @@ export default function AddReelsPage() {
       }
 
       if (editingReel) {
-        await updateReel(editingReel.id, reelData)
+        await deleteReel(editingReel.id)
+
+        // Create a new reel with updated data
+        await createReel(reelData)
+
         toast({
           title: "Success",
-          description: "Reel updated successfully!",
+          description: "Reel replaced successfully!",
         })
       } else {
         await createReel(reelData)
