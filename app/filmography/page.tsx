@@ -339,7 +339,7 @@ export default function FilmographyPage() {
               }`}
             >
               {/* Film Poster */}
-              <div className={`relative group ${index % 2 === 1 ? "lg:col-start-2" : ""}`}>
+              <div className={`relative group ${index % 2 === 1 ? "lg:col-start-2" : ""} scale-95`}>
                 <div className="aspect-[2/3] relative overflow-hidden rounded-xl bg-gradient-to-br from-amber-400/10 to-transparent p-1">
                   <Image
                     src={film.poster || "/placeholder.svg"}
