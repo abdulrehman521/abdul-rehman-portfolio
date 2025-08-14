@@ -45,23 +45,24 @@ export default function HomePage() {
               size="lg" 
               className="bg-amber-500 hover:bg-amber-600 text-black font-semibold px-8 py-4 text-lg group transition-all duration-300"
             >
-              <Link href="/portfolio">
+              <Link href="/filmography">
                 View My Work
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
             
             <Button 
-              asChild
-              variant="outline" 
-              size="lg"
-              className="border-white text-white hover:bg-white hover:text-black px-8 py-4 text-lg group transition-all duration-300"
-            >
-              <a href="https://behance.net/abdulrehman19966" target="_blank" rel="noopener noreferrer">
-                <Play className="mr-2 h-5 w-5" />
-                Behance Portfolio
-              </a>
-            </Button>
+  asChild
+  variant="outline" 
+  size="lg"
+  className="border-white text-white hover:bg-white hover:text-black px-8 py-4 text-lg group transition-all duration-300"
+>
+  <a href="/about">
+    <Play className="mr-2 h-5 w-5" />
+    View Resume
+  </a>
+</Button>
+
           </div>
         </div>
       </div>

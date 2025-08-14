@@ -169,45 +169,36 @@
 // }
 
 
-import fs from "fs";
-import path from "path";
+
+
+
+import { createClient } from "@supabase/supabase-js";
 import PhotographyClient from "./PhotographyClient";
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
 
 const categories = ["Aesthetics", "Corporate", "Fashion", "Product", "Sports", "Wedding"];
 
-// Recursive function to get all images from a folder
-function getImagesFromFolder(folderPath: string, folderURL: string): string[] {
-  let images: string[] = [];
-  const entries = fs.readdirSync(folderPath, { withFileTypes: true });
-
-  for (const entry of entries) {
-    const fullPath = path.join(folderPath, entry.name);
-    const publicURL = `${folderURL}/${entry.name}`;
-
-    if (entry.isDirectory()) {
-      images = images.concat(getImagesFromFolder(fullPath, publicURL));
-    } else if (/\.(jpg|jpeg|png|webp|gif)$/i.test(entry.name)) {
-      images.push(publicURL);
-    }
-  }
-  return images;
-}
-
-export default function PhotographyPage() {
-  const baseFolder = path.join(process.cwd(), "public", "Portfolio_Pictures");
+export default async function PhotographyPage() {
   const imagesByCategory: Record<string, string[]> = {};
 
-  categories.forEach(category => {
-    const categoryPath = path.join(baseFolder, category);
-    if (fs.existsSync(categoryPath)) {
-      imagesByCategory[category] = getImagesFromFolder(
-        categoryPath,
-        `/Portfolio_Pictures/${category}`
-      );
-    } else {
+  for (const category of categories) {
+    const { data, error } = await supabase
+      .from("images")
+      .select("url")
+      .eq("folder", category)
+      .order("created_at", { ascending: false });
+
+    if (error) {
+      console.error(`Error fetching ${category}:`, error);
       imagesByCategory[category] = [];
+    } else {
+      imagesByCategory[category] = data.map(img => img.url);
     }
-  });
+  }
 
   return (
     <PhotographyClient
@@ -216,3 +207,53 @@ export default function PhotographyPage() {
     />
   );
 }
+
+
+
+// import fs from "fs";
+// import path from "path";
+// import PhotographyClient from "./PhotographyClient";
+
+// const categories = ["Aesthetics", "Corporate", "Fashion", "Product", "Sports", "Wedding"];
+
+// // Recursive function to get all images from a folder
+// function getImagesFromFolder(folderPath: string, folderURL: string): string[] {
+//   let images: string[] = [];
+//   const entries = fs.readdirSync(folderPath, { withFileTypes: true });
+
+//   for (const entry of entries) {
+//     const fullPath = path.join(folderPath, entry.name);
+//     const publicURL = `${folderURL}/${entry.name}`;
+
+//     if (entry.isDirectory()) {
+//       images = images.concat(getImagesFromFolder(fullPath, publicURL));
+//     } else if (/\.(jpg|jpeg|png|webp|gif)$/i.test(entry.name)) {
+//       images.push(publicURL);
+//     }
+//   }
+//   return images;
+// }
+
+// export default function PhotographyPage() {
+//   const baseFolder = path.join(process.cwd(), "public", "Portfolio_Pictures");
+//   const imagesByCategory: Record<string, string[]> = {};
+
+//   categories.forEach(category => {
+//     const categoryPath = path.join(baseFolder, category);
+//     if (fs.existsSync(categoryPath)) {
+//       imagesByCategory[category] = getImagesFromFolder(
+//         categoryPath,
+//         `/Portfolio_Pictures/${category}`
+//       );
+//     } else {
+//       imagesByCategory[category] = [];
+//     }
+//   });
+
+//   return (
+//     <PhotographyClient
+//       categories={categories}
+//       imagesByCategory={imagesByCategory}
+//     />
+//   );
+// }
