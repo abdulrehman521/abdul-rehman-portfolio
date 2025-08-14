@@ -268,7 +268,7 @@ const handleSubmit = (e: React.FormEvent) => {
                   </a>
 
                   <a 
-                    href="https://youtube.com/@abdulrehman" 
+                    href="https://youtube.com/@abdulrehmanhashmi7204" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="flex items-center space-x-3 p-4 bg-gray-800/50 rounded-xl border border-gray-700 hover:border-amber-400/50 transition-colors group"
