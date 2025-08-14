@@ -229,7 +229,7 @@ const handleSubmit = (e: React.FormEvent) => {
                 <h3 className="text-xl font-semibold text-white mb-6">Follow My Work</h3>
                 <div className="grid grid-cols-2 gap-4">
                   <a 
-                    href="https://behance.net/abdulrehman19966" 
+                    href="https://www.behance.net/portfolio/editor?project_id=179394001" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="flex items-center space-x-3 p-4 bg-gray-800/50 rounded-xl border border-gray-700 hover:border-amber-400/50 transition-colors group"
@@ -255,7 +255,7 @@ const handleSubmit = (e: React.FormEvent) => {
                   </a>
 
                   <a 
-                    href="https://linkedin.com/in/abdulrehman" 
+                    href="https://linkedin.com/in/abdul-rehman-hashmi-436939166" 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="flex items-center space-x-3 p-4 bg-gray-800/50 rounded-xl border border-gray-700 hover:border-amber-400/50 transition-colors group"
