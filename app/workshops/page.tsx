@@ -9,7 +9,7 @@ const workshops = [
     date: "2023 - 2024",
     participants: "100+ Attendees",
     description: "Organized and conducted 2 hands-on Sony workshops showcasing Sony's latest line of professional cameras. Created immersive experiences with fully equipped sets, professional lighting, and styled models.",
-    image: "/placeholder.svg?height=400&width=600",
+    image: "/1.png",
     topics: ["Sony Camera Features", "Professional Lighting", "Live Studio Setup", "Real-time Shooting"],
     testimonials: [
       {
@@ -21,19 +21,28 @@ const workshops = [
   },
   {
     id: 2,
-    title: "Cinematic Storytelling in Ads",
+    title: "Nikon Workshop on wildlife photography",
     date: "2023",
     participants: "50+ Students",
-    description: "Workshop focused on cinematic storytelling techniques specifically for advertising and commercial content creation.",
-    image: "/placeholder.svg?height=400&width=600",
-    topics: ["Cinematic Techniques", "Ad Storytelling", "Commercial Production", "Brand Narratives"],
-    testimonials: [
-      {
-        name: "Marketing Professional",
-        role: "Brand Manager",
-        quote: "The storytelling techniques learned in this workshop transformed how we approach our brand campaigns."
-      }
-    ]
+    description: "I attended a Nikon Workshop on wildlife photography, where I learned advanced techniques for capturing animals in their natural habitat. The session covered topics such as camera settings for fast-moving subjects, composition in challenging lighting, and ethical practices in the field. Hands-on exercises and expert tips from seasoned photographers made it an inspiring and practical experience, enhancing both my technical skills and creative vision.rkshop focused on cinematic storytelling techniques specifically for advertising and commercial content creation.",
+    image: "/workshop_2.png",
+    "topics": [
+    "Understanding Wildlife Behavior",
+    "Camera Settings for Action",
+    "Using Telephoto Lenses Effectively",
+    "Shooting in Natural Light",
+    "Composition in the Wild",
+    "Ethical Wildlife Photography",
+    "Post-Processing Tips",
+    "Field Practice"
+  ],
+  "testimonials": [
+    {
+      "name": "Wildlife Photography Enthusiast",
+      "role": "Amateur Photographer",
+      "quote": "The Nikon workshop completely changed how I approach wildlife photography—my shots now capture both the beauty and the story of the moment."
+    }
+  ]
   },
   {
     id: 3,
@@ -103,16 +112,18 @@ export default function WorkshopsPage() {
                 }`}
               >
                 {/* Workshop Image */}
-                <div className={`relative ${index % 2 === 1 ? 'lg:col-start-2' : ''}`}>
-                  <div className="aspect-video relative overflow-hidden rounded-xl">
-                    <Image
-                      src={workshop.image || "/placeholder.svg"}
-                      alt={workshop.title}
-                      fill
-                      className="object-cover hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-                </div>
+<div className={`relative ${index % 2 === 1 ? 'lg:col-start-2' : ''}`}>
+  <div className="relative overflow-hidden rounded-xl">
+    <Image
+      src={workshop.image}
+      alt={workshop.title}
+      width={800} // Adjust width as per your image's original size
+      height={600} // Adjust height as per your image's original size
+      className="object-contain w-full h-auto hover:scale-105 transition-transform duration-500"
+    />
+  </div>
+</div>
+
 
                 {/* Workshop Details */}
                 <div className={`space-y-6 ${index % 2 === 1 ? 'lg:col-start-1 lg:row-start-1' : ''}`}>
