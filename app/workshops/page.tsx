@@ -1,6 +1,7 @@
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Calendar, Users, Award, Camera, Video, Palette } from 'lucide-react'
+import Link from "next/link"
 
 const workshops = [
   {
@@ -50,7 +51,7 @@ const workshops = [
     date: "2022",
     participants: "30+ Participants",
     description: "Completed advanced training in color grading techniques through Film Riot Academy, focusing on professional post-production workflows.",
-    image: "/placeholder.svg?height=400&width=600",
+    image: "/3.png",
     topics: ["DaVinci Resolve Studio", "Color Theory", "Professional Grading", "Post-Production"],
     testimonials: [
       {
@@ -245,12 +246,14 @@ export default function WorkshopsPage() {
             Join my next workshop or bring me to your organization for customized training sessions.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button className="bg-amber-500 hover:bg-amber-600 text-black text-lg px-8 py-3">
-              Book a Workshop
-            </Button>
-            <Button variant="outline" className="border-gray-600 text-gray-300 hover:border-amber-400 hover:text-amber-400 text-lg px-8 py-3">
-              Corporate Training
-            </Button>
+            
+<Button asChild className="bg-amber-500 hover:bg-amber-600 text-black text-lg px-8 py-3">
+  <Link href="/contact">Book a Workshop</Link>
+</Button>
+
+<Button asChild variant="outline" className="border-gray-600 text-gray-300 hover:border-amber-400 hover:text-amber-400 text-lg px-8 py-3">
+  <Link href="/contact">Corporate Training</Link>
+</Button>
           </div>
         </div>
       </section>
